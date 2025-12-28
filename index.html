@@ -3,32 +3,35 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>JuriSanté — Accompagnement juridique des professionnels de santé</title>
-  <meta name="description" content="JuriSanté est un service d’accompagnement et d’organisation juridique destiné aux professionnels de santé. Il renforce les garanties existantes grâce à un cadre structuré et une interface dédiée." />
-  <meta name="theme-color" content="#08233D" />
+  <title>JuriSanté — Accompagnement juridique des libéraux de santé</title>
+  <meta name="description" content="JuriSanté renforce l’organisation et la gestion juridique des libéraux de santé, en complément des garanties déjà prévues par les dispositifs obligatoires." />
+  <meta name="theme-color" content="#0A2540" />
 
-  <!-- Police institutionnelle -->
+  <!-- Police lisible & institutionnelle -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --navy:#08233D;
-      --navy2:#0B2D4D;
-      --sky:#188FC7;
+      /* Palette plus “organisme” (moins blanc, plus premium) */
+      --navy:#0A2540;
+      --navy2:#103A63;
+      --blue:#1C7BC6;
+      --blue2:#0F6FA6;
+
+      --bg1:#EEF5FB;
+      --bg2:#E6F0F9;
+      --card:#FFFFFF;
+      --line:#D3E3F2;
 
       --ink:#07121C;
-      --slate:#243645;
-      --muted:#4E6373;
+      --slate:#213546;
+      --muted:#4A6376;
 
-      --line:#D7E5F0;
-      --bg:#F1F6FB;
-      --card:#FFFFFF;
-
-      --radius:16px;
-      --shadow: 0 14px 34px rgba(8,35,61,.10);
-      --max: 1160px;
+      --radius:18px;
+      --shadow: 0 18px 50px rgba(10,37,64,.10);
+      --max: 1120px;
     }
 
     *{box-sizing:border-box}
@@ -36,233 +39,567 @@
       margin:0;padding:0;
       font-family:"Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--ink);
-      background:linear-gradient(180deg,#ffffff 0%,var(--bg) 70%);
+      background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(28,123,198,.18), transparent 55%),
+        radial-gradient(900px 500px at 85% 10%, rgba(16,58,99,.12), transparent 55%),
+        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 55%, #F7FBFF 100%);
     }
 
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 12px;}
-
-    /* Header */
-    .topbar{
-      position:sticky;top:0;z-index:20;
-      background:rgba(255,255,255,.9);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--line);
-    }
-    .topbar .inner{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 0;
-    }
-
-    .brand{display:flex;align-items:center;gap:12px}
-    .seal{
-      width:46px;height:46px;border-radius:14px;
-      background:radial-gradient(120% 120% at 30% 20%,#fff 0%,#f6fbff 55%,#eef6fd 100%);
-      border:1px solid var(--line);
-      box-shadow:0 16px 28px rgba(8,35,61,.12);
-      display:flex;align-items:center;justify-content:center;
-      position:relative;
-    }
-    .seal:before{
-      content:"JS";
-      font-weight:900;
-      letter-spacing:.6px;
-      color:var(--navy);
-      font-size:15px;
-    }
-    .seal:after{
-      content:"";
-      position:absolute;inset:6px;
-      border-radius:12px;
-      border:2px solid rgba(24,143,199,.4);
-    }
-
-    .wordmark .name{font-weight:900;font-size:16px}
-    .wordmark .name span{color:var(--sky)}
-    .wordmark .tag{font-size:12px;color:var(--muted);font-weight:600}
-
-    nav{display:flex;gap:18px}
-    nav a{font-size:14px;font-weight:700;color:var(--muted)}
-    nav a:hover{color:var(--navy)}
-
-    .btn{
-      padding:11px 16px;
-      border-radius:12px;
-      font-weight:800;
-      border:1px solid transparent;
-      display:inline-flex;align-items:center;justify-content:center;
-    }
-    .btn.primary{
-      background:linear-gradient(180deg,var(--navy2),var(--navy));
-      color:#fff;
-      box-shadow:0 16px 26px rgba(8,35,61,.18);
-    }
-    .btn.ghost{
-      background:#fff;
-      color:var(--navy);
-      border-color:var(--line);
-    }
-
-    main{padding:28px 0}
-
-    .hero{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    @media(max-width:900px){.hero{grid-template-columns:1fr} nav{display:none}}
-
-    .badge{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      font-weight:700;color:var(--muted);
-      background:#fff;
-    }
-    .dot{width:10px;height:10px;border-radius:999px;background:var(--sky)}
-
-    h1{font-size:40px;line-height:1.1;margin:14px 0;color:var(--navy)}
-    .lead{font-size:18px;color:var(--slate);max-width:65ch}
-
-    section{padding:28px 0}
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 14px;}
     .card{
       background:var(--card);
       border:1px solid var(--line);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
-      padding:18px;
     }
 
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    @media(max-width:900px){.grid3{grid-template-columns:1fr}}
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background: rgba(238,245,251,.78);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(211,227,242,.9);
+    }
+    .topbar .inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+      gap:12px;
+    }
 
-    .pricing{display:grid;grid-template-columns:1fr .9fr;gap:16px}
-    @media(max-width:900px){.pricing{grid-template-columns:1fr}}
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none;
+      min-width: 220px;
+    }
+    .brand img{
+      width:52px; height:52px;
+      object-fit:contain;
+      border-radius:14px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow: 0 10px 24px rgba(10,37,64,.10);
+      padding:6px;
+    }
+    .brand .wm{line-height:1.05}
+    .brand .name{font-weight:900; color:var(--navy); letter-spacing:.2px;}
+    .brand .tag{font-size:12.5px; font-weight:700; color:var(--muted);}
 
-    footer{margin-top:36px;font-size:13px;color:var(--muted)}
-    .hr{height:1px;background:var(--line);margin:20px 0}
+    nav{
+      display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+      justify-content:center;
+    }
+    nav a{
+      font-size:14px;
+      font-weight:800;
+      color:var(--muted);
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:999px;
+    }
+    nav a:hover{
+      color:var(--navy);
+      background: rgba(255,255,255,.60);
+      border:1px solid rgba(211,227,242,.9);
+      padding:7px 9px;
+    }
+
+    .actions{display:flex; gap:10px; align-items:center;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 16px;
+      border-radius:12px;
+      font-weight:900;
+      text-decoration:none;
+      border:1px solid transparent;
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+    .btn.primary{
+      color:#fff;
+      background: linear-gradient(180deg, var(--navy2), var(--navy));
+      box-shadow: 0 16px 28px rgba(10,37,64,.18);
+    }
+    .btn.primary:hover{filter:brightness(1.04);}
+    .btn.ghost{
+      background: rgba(255,255,255,.82);
+      border-color: var(--line);
+      color: var(--navy);
+    }
+    .btn.ghost:hover{border-color:#B7D2EA;}
+
+    @media (max-width: 980px){
+      nav{display:none;}
+      .brand{min-width:auto;}
+    }
+
+    /* Sections */
+    main{padding:26px 0 42px;}
+    section{padding:18px 0;}
+    .section-title{
+      margin:0 0 10px;
+      font-size:18px;
+      color:var(--navy);
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin:0 0 14px;
+      color:var(--muted);
+      line-height:1.6;
+      max-width: 80ch;
+    }
+
+    /* Hero */
+    .hero{
+      padding-top:6px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr;}
+    }
+    .hero-card{padding:18px;}
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.70);
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-weight:800;
+      width:fit-content;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--blue);
+      box-shadow: 0 0 0 6px rgba(28,123,198,.14);
+    }
+    h1{
+      margin:12px 0 10px;
+      font-size:40px;
+      line-height:1.08;
+      letter-spacing:-.6px;
+      color:var(--navy);
+    }
+    @media (max-width: 520px){ h1{font-size:34px;} }
+    .lead{
+      margin:0 0 14px;
+      font-size:18px;
+      line-height:1.6;
+      color:var(--slate);
+      max-width: 70ch;
+    }
+    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+    .mini-note{
+      margin-top:12px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .side{padding:18px;}
+    .side h3{
+      margin:0 0 8px;
+      color:var(--navy);
+      font-size:14px;
+      letter-spacing:.2px;
+    }
+    .side p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:13.5px;
+    }
+    .side .box{
+      padding:14px;
+      border-radius:14px;
+      border:1px solid rgba(211,227,242,.95);
+      background: rgba(255,255,255,.70);
+    }
+    .side .box + .box{margin-top:10px;}
+
+    /* Grids */
+    .grid3{
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 980px){ .grid3{grid-template-columns:1fr;} }
+    .tile{padding:16px;}
+    .tile strong{
+      display:block;
+      color:var(--navy);
+      margin-bottom:6px;
+      font-size:15px;
+      letter-spacing:.1px;
+    }
+    .tile p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    /* Pricing */
+    .pricing{
+      display:grid;
+      grid-template-columns: 1fr .95fr;
+      gap:12px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){ .pricing{grid-template-columns:1fr;} }
+    .price{padding:18px;}
+    .price .amount{
+      margin:10px 0 8px;
+      font-size:44px;
+      font-weight:1000;
+      color:var(--navy);
+      letter-spacing:-1px;
+    }
+    .price ul{
+      margin:12px 0 0;
+      padding:0;
+      list-style:none;
+      color:var(--muted);
+    }
+    .price li{
+      padding:9px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .price li:last-child{border-bottom:0;}
+    .fine{
+      margin-top:10px;
+      font-size:12.5px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    /* FAQ */
+    details{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.70);
+      border-radius:14px;
+      padding:12px 14px;
+    }
+    details + details{margin-top:10px;}
+    summary{
+      cursor:pointer;
+      font-weight:900;
+      color:var(--navy);
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none;}
+    details p{margin:10px 0 0; color:var(--muted); line-height:1.6;}
+
+    /* Footer */
+    footer{
+      margin-top:18px;
+      padding:18px 0 34px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .hr{height:1px; background:rgba(211,227,242,.95); margin:18px 0;}
+    .legal{padding:16px;}
+    .legal h3{margin:0 0 8px; color:var(--navy); font-size:14px;}
+    .legal p{margin:0; line-height:1.65;}
+    .links a{
+      color:var(--muted);
+      font-weight:800;
+      text-decoration:none;
+      margin-right:12px;
+    }
+    .links a:hover{color:var(--navy);}
   </style>
 </head>
 
 <body>
 
 <header class="topbar">
-  <div class="wrap inner">
-    <div class="brand">
-      <div class="seal"></div>
-      <div class="wordmark">
-        <div class="name">Juri<span>Santé</span></div>
-        <div class="tag">Accompagnement juridique des professionnels de santé</div>
+  <div class="wrap">
+    <div class="inner">
+      <a class="brand" href="#top" aria-label="JuriSanté accueil">
+        <!-- IMPORTANT : upload le logo dans le repo sous assets/logo.png -->
+        <img src="assets/logo.png" alt="Logo JuriSanté">
+        <div class="wm">
+          <div class="name">JuriSanté</div>
+          <div class="tag">Service d’accompagnement juridique pour libéraux de santé</div>
+        </div>
+      </a>
+
+      <nav aria-label="Navigation">
+        <a href="#enjeux">Enjeux</a>
+        <a href="#apports">Ce que JuriSanté apporte</a>
+        <a href="#fonctionnement">Fonctionnement</a>
+        <a href="#abonnement">Abonnement</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="actions">
+        <a class="btn ghost" href="#contact">Contact</a>
+        <a class="btn primary" href="#abonnement">Découvrir l’abonnement</a>
       </div>
-    </div>
-
-    <nav>
-      <a href="#solution">Service</a>
-      <a href="#fonctionnement">Fonctionnement</a>
-      <a href="#tarifs">Tarifs</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <div>
-      <a class="btn ghost" href="#contact">Contact</a>
-      <a class="btn primary" href="#tarifs">Découvrir l’abonnement</a>
     </div>
   </div>
 </header>
 
-<main>
+<main id="top">
   <div class="wrap">
 
     <!-- HERO -->
     <section class="hero">
-      <div>
-        <div class="badge"><span class="dot"></span> Service d’accompagnement et d’organisation juridique</div>
-        <h1>Un cadre juridique structuré pour sécuriser l’activité des professionnels de santé.</h1>
-        <p class="lead">
-          JuriSanté est un service destiné aux libéraux de santé.  
-          Il renforce les garanties déjà prévues par les dispositifs d’assurance obligatoires,
-          en apportant méthode, clarté et soutien opérationnel via une interface dédiée.
-        </p>
-        <div style="margin-top:14px">
-          <a class="btn primary" href="#tarifs">Découvrir l’abonnement</a>
-        </div>
-      </div>
+      <div class="hero-grid">
 
-      <div class="card">
-        <strong>Positionnement clair</strong>
-        <p>
-          JuriSanté intervient en amont et en soutien des dispositifs existants afin de structurer les démarches,
-          renforcer la cohérence des dossiers et faciliter les échanges lorsque nécessaire.
-        </p>
+        <div class="card hero-card">
+          <div class="badge"><span class="dot" aria-hidden="true"></span> Renforcement des garanties existantes • Cadre structuré • Interface dédiée</div>
+          <h1>Un soutien juridique structuré, en complément des dispositifs obligatoires.</h1>
+          <p class="lead">
+            JuriSanté est un service d’accompagnement et d’organisation juridique destiné aux professionnels de santé.
+            Il a pour vocation de renforcer les garanties déjà prévues dans les dossiers d’assurance obligatoires,
+            en apportant méthode, continuité et lisibilité via une interface personnalisée.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#abonnement">Voir l’abonnement</a>
+            <a class="btn ghost" href="#enjeux">Comprendre les enjeux</a>
+          </div>
+
+          <div class="mini-note">
+            JuriSanté intervient en amont et en soutien des dispositifs existants, afin de structurer les démarches et faciliter la gestion des situations sensibles.
+          </div>
+        </div>
+
+        <div class="card side">
+          <div class="box">
+            <h3>Pourquoi ce service existe</h3>
+            <p>
+              Dans la pratique, une protection ne dépend pas uniquement des garanties contractuelles : elle dépend aussi de la
+              capacité à réagir avec méthode, à présenter un dossier cohérent, et à éviter les erreurs d’organisation au mauvais moment.
+            </p>
+          </div>
+          <div class="box">
+            <h3>Positionnement transparent</h3>
+            <p>
+              JuriSanté n’est pas un cabinet d’avocats et n’assure pas de représentation.
+              Le service s’inscrit comme un accompagnement opérationnel et un cadre d’organisation, complémentaire aux acteurs compétents.
+            </p>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- SOLUTION -->
-    <section id="solution">
-      <h2>Le service JuriSanté</h2>
+    <!-- ENJEUX / PEURS (sans tutoiement, mais qui fait réfléchir) -->
+    <section id="enjeux">
+      <h2 class="section-title">Enjeux rencontrés dans l’exercice libéral</h2>
+      <p class="sub">
+        Les libéraux de santé évoluent dans un cadre réglementaire exigeant. Lorsqu’un événement survient (contrôle, réclamation, désaccord, incident),
+        ce n’est pas seulement l’événement qui pèse : c’est sa gestion.
+      </p>
+
       <div class="grid3">
-        <div class="card">
-          <strong>Cadre structuré</strong>
-          <p>Organisation claire et centralisée des démarches juridiques liées à l’activité.</p>
+        <div class="card tile">
+          <strong>Situation sensible, décisions rapides</strong>
+          <p>
+            Sans cadre clair, les démarches se dispersent. L’urgence impose des réponses, parfois sans visibilité sur l’ordre et les priorités.
+          </p>
         </div>
-        <div class="card">
-          <strong>Accompagnement opérationnel</strong>
-          <p>Parcours guidé pour adopter les bons réflexes au bon moment.</p>
+        <div class="card tile">
+          <strong>Dossier incomplet ou incohérent</strong>
+          <p>
+            Une protection existante peut être fragilisée par un manque d’éléments, un suivi insuffisant ou une organisation tardive.
+          </p>
         </div>
-        <div class="card">
-          <strong>Renforcement des garanties</strong>
-          <p>Complément aux assurances existantes, sans s’y substituer.</p>
+        <div class="card tile">
+          <strong>Perte de temps, charge mentale</strong>
+          <p>
+            Recherche d’informations, échanges multiples, documents introuvables : l’activité est perturbée, la sérénité diminue.
+          </p>
+        </div>
+      </div>
+
+      <p class="sub" style="margin-top:12px;">
+        JuriSanté a été conçu pour apporter un cadre structuré avant, pendant et après, afin de renforcer l’efficacité des garanties déjà en place.
+      </p>
+    </section>
+
+    <!-- APPORTS -->
+    <section id="apports">
+      <h2 class="section-title">Ce que JuriSanté apporte concrètement</h2>
+      <p class="sub">
+        Le service vise à renforcer l’existant : garanties obligatoires, démarches, échanges. L’objectif est d’apporter méthode et continuité,
+        sans complexité inutile.
+      </p>
+
+      <div class="grid3">
+        <div class="card tile">
+          <strong>Un cadre structuré</strong>
+          <p>Un point de référence unique, une organisation claire, et une logique simple pour suivre les étapes sans dispersion.</p>
+        </div>
+        <div class="card tile">
+          <strong>Un accompagnement opérationnel</strong>
+          <p>Parcours guidé et repères pratiques pour adopter les bons réflexes au bon moment, avec une interface personnalisée.</p>
+        </div>
+        <div class="card tile">
+          <strong>Renforcement des garanties existantes</strong>
+          <p>Meilleure cohérence des éléments suivis et meilleure préparation, facilitant les échanges lorsque cela est nécessaire.</p>
         </div>
       </div>
     </section>
 
     <!-- FONCTIONNEMENT -->
     <section id="fonctionnement">
-      <h2>Fonctionnement</h2>
+      <h2 class="section-title">Fonctionnement</h2>
+      <p class="sub">
+        JuriSanté est conçu pour s’intégrer facilement à une organisation libérale, avec une approche structurée et accessible.
+      </p>
+
       <div class="grid3">
-        <div class="card"><strong>1. Accès au service</strong><p>Activation de l’espace JuriSanté après souscription.</p></div>
-        <div class="card"><strong>2. Utilisation</strong><p>Interface dédiée pour organiser et suivre les démarches.</p></div>
-        <div class="card"><strong>3. Continuité</strong><p>Suivi structuré dans le temps.</p></div>
+        <div class="card tile">
+          <strong>1) Activation</strong>
+          <p>Ouverture de l’accès au service et à l’interface dédiée après souscription.</p>
+        </div>
+        <div class="card tile">
+          <strong>2) Parcours guidé</strong>
+          <p>Organisation étape par étape, avec repères clairs selon les situations rencontrées.</p>
+        </div>
+        <div class="card tile">
+          <strong>3) Continuité</strong>
+          <p>Suivi structuré dans le temps pour conserver visibilité, cohérence et sérénité.</p>
+        </div>
       </div>
     </section>
 
-    <!-- TARIFS -->
-    <section id="tarifs">
-      <h2>Tarifs</h2>
+    <!-- ABONNEMENT -->
+    <section id="abonnement">
+      <h2 class="section-title">Abonnement</h2>
+
       <div class="pricing">
-        <div class="card">
-          <strong>Abonnement mensuel</strong>
-          <div style="font-size:40px;font-weight:900;color:var(--navy)">45 € / mois</div>
-          <p>Accès complet au service JuriSanté.</p>
+        <div class="card price">
+          <div class="badge"><span class="dot" aria-hidden="true"></span> Formule mensuelle</div>
+          <div class="amount">45 € <span style="font-size:14px; font-weight:800; color:var(--muted);">/ mois</span></div>
+          <p class="sub" style="margin:0 0 8px;">
+            Accès au service JuriSanté et à l’interface dédiée.
+          </p>
+
+          <ul>
+            <li>Interface personnalisée (espace dédié)</li>
+            <li>Cadre structuré & repères opérationnels</li>
+            <li>Suivi continu</li>
+            <li>Mises à jour du service</li>
+            <li>Support selon modalités prévues</li>
+          </ul>
+
+          <div class="fine">
+            Modalités de facturation, prorata, résiliation et conditions détaillées avant souscription.
+          </div>
+
+          <div class="cta-row" style="margin-top:14px;">
+            <a class="btn primary" href="#contact">Demander un rappel</a>
+            <a class="btn ghost" href="#faq">Voir les questions fréquentes</a>
+          </div>
         </div>
-        <div class="card">
-          <p>
-            Abonnement résiliable à tout moment.  
-            Les modalités complètes sont précisées dans les conditions générales.
+
+        <div class="card price">
+          <h3 style="margin:0 0 8px; color:var(--navy); font-size:16px; letter-spacing:.2px;">Positionnement & transparence</h3>
+          <p class="sub" style="margin:0 0 10px;">
+            JuriSanté intervient en amont et en soutien des dispositifs existants afin de structurer les démarches et renforcer la cohérence des éléments suivis.
+          </p>
+          <p class="sub" style="margin:0;">
+            Le service n’est pas un cabinet d’avocats et ne fournit pas de représentation.
+            Il s’inscrit comme un accompagnement opérationnel et un cadre d’organisation, complémentaire aux acteurs compétents.
           </p>
         </div>
       </div>
     </section>
 
+    <!-- FAQ -->
+    <section id="faq">
+      <h2 class="section-title">FAQ</h2>
+
+      <details class="card">
+        <summary>JuriSanté remplace-t-il une assurance ou un avocat ?</summary>
+        <p>
+          Non. JuriSanté renforce l’organisation et la continuité en complément des garanties existantes et des professionnels compétents.
+          Le service apporte méthode et soutien opérationnel, sans représentation.
+        </p>
+      </details>
+
+      <details class="card">
+        <summary>Pourquoi un service supplémentaire si des garanties existent déjà ?</summary>
+        <p>
+          Dans la pratique, l’efficacité d’une garantie dépend aussi de la qualité du suivi, de la cohérence des éléments et de la capacité à réagir avec méthode.
+          JuriSanté est conçu pour renforcer ces points.
+        </p>
+      </details>
+
+      <details class="card">
+        <summary>Le service est-il adapté à toutes les professions de santé ?</summary>
+        <p>
+          JuriSanté vise les libéraux de santé (médecins, infirmiers, kinés, dentistes, sages-femmes, ostéopathes, psychologues, etc.).
+          Le service est conçu pour rester simple, lisible et applicable au quotidien.
+        </p>
+      </details>
+
+      <details class="card">
+        <summary>Comment contacter JuriSanté ?</summary>
+        <p>
+          Les coordonnées sont indiquées dans la section Contact en bas de page. Un rappel peut être demandé.
+        </p>
+      </details>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact">
-      <h2>Contact</h2>
-      <div class="card">
-        <p>Téléphone : <strong><a href="tel:+33109XXXXXX">01/09 XX XX XX</a></strong></p>
-        <p>Email : <strong>contact@juri-sante.fr</strong></p>
-        <p>Horaires : du lundi au vendredi, 9h–18h</p>
+      <h2 class="section-title">Contact</h2>
+      <p class="sub">Pour toute demande d’information, un échange peut être organisé aux horaires indiqués.</p>
+
+      <div class="card" style="padding:18px;">
+        <p style="margin:0 0 6px;"><strong>Téléphone :</strong> <a href="tel:+33109XXXXXX">01/09 XX XX XX</a></p>
+        <p style="margin:0 0 6px;"><strong>Email :</strong> <a href="mailto:contact@juri-sante.fr">contact@juri-sante.fr</a></p>
+        <p style="margin:0;"><strong>Horaires :</strong> Lun–Ven, 9h–18h</p>
       </div>
     </section>
 
     <footer>
       <div class="hr"></div>
-      <p>
-        JuriSanté – service opéré par <strong>E.M.A Ventures</strong>, entreprise individuelle  
-        22 rue de l’Égalité, 78410 Aubergenville
-      </p>
-      <p>© <span id="year"></span> JuriSanté</p>
+
+      <div class="links">
+        <a href="#mentions">Mentions légales</a>
+        <a href="#conditions">Conditions</a>
+        <a href="#confidentialite">Confidentialité</a>
+      </div>
+
+      <div class="card legal" id="mentions" style="margin-top:12px;">
+        <h3>Mentions légales</h3>
+        <p>
+          Service : <strong>JuriSanté</strong><br/>
+          Éditeur : <strong>E.M.A Ventures</strong> (Entreprise individuelle)<br/>
+          Adresse : <strong>22 rue de l’Égalité, 78410 Aubergenville</strong><br/>
+          Email : <strong>contact@juri-sante.fr</strong><br/>
+          Téléphone : <strong>01/09 XX XX XX</strong><br/>
+          SIRET : <strong>À compléter</strong><br/>
+          Hébergeur : <strong>GitHub Pages</strong>
+        </p>
+      </div>
+
+      <div class="card legal" id="conditions" style="margin-top:12px;">
+        <h3>Conditions</h3>
+        <p>
+          Abonnement mensuel — modalités de facturation, prorata, résiliation et conditions détaillées communiquées avant souscription.
+        </p>
+      </div>
+
+      <div class="card legal" id="confidentialite" style="margin-top:12px;">
+        <h3>Confidentialité</h3>
+        <p>
+          JuriSanté invite à ne saisir que les informations strictement nécessaires à l’utilisation du service, conformément aux bonnes pratiques.
+        </p>
+      </div>
+
+      <p style="margin:12px 0 0;">© <span id="year"></span> JuriSanté — Tous droits réservés.</p>
     </footer>
 
   </div>
